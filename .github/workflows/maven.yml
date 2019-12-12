@@ -17,6 +17,8 @@ jobs:
       run: mvn -B package --file petclinic/pom.xml
     - name: Run server
       run: nohup java -jar petclinic/target/petclinic-2.2.2.BUILD-SNAPSHOT.jar &
+    - name: Install Maven test
+      run: mvn --file petclinic-selenium/pom.xml -DskipTests install
     - name: Tests with Maven
       run: mvn -Dtest=PetclinicTest --file petclinic-selenium/pom.xml -Dbrowser=chrome -Dheadless=false test
       
